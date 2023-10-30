@@ -1,20 +1,19 @@
-const OrderProcessor = require('./orderProceser');
+const OrderProcessor = require('./orderprocessor');
 const orderProcessor = new OrderProcessor();
-orderProcessor.on('PROCESSING STARTED', (orderNumber) => {
+orderProcessor.on('PROCESSING_STARTED', (orderNumber) => {
   console.log(`Pre-Order Checks Running for ${orderNumber}`);
 });
-
 orderProcessor.on('PROCESSING FAILED', (failureData) => {
   console.log('Failed Order');
-  console.log(`OrderNumber: ${failureData.orderNumber}`);
-  console.log(`Reason: ${failureData.reason}`);
+  console.log(`- OrderNumber: ${failureData.orderNumber}`);
+  console.log(`- Reason: ${failureData.reason}`);
   if (failureData.itemId) {
-    console.log(`ItemId: ${failureData.itemId}`);
+    console.log(`- ItemId: ${failureData.itemId}`);
   }
 });
 
 orderProcessor.on('PROCESSING SUCCESS', (orderNumber) => {
-  console.log(`Pre order Check Passed for ${orderNumber}`);
+  console.log(`Pre-Order Checks Passed for ${orderNumber}`);
 });
 
 orderProcessor.placeOrder({
