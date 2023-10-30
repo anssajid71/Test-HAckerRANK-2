@@ -1,4 +1,4 @@
-const OrderProcessor = require('./orderprocessor');
+const OrderProcessor = require('./orderProceser');
 const orderProcessor = new OrderProcessor();
 orderProcessor.on('PROCESSING_STARTED', (orderNumber) => {
   console.log(`Pre-Order Checks Running for ${orderNumber}`);
