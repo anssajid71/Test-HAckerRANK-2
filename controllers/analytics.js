@@ -1,5 +1,5 @@
-const Analytics = require('../models/analytics');
 const { Op } = require('sequelize');
+const Analytics = require('../models/analytics');
 
 async function createEvent(req, res) {
   try {

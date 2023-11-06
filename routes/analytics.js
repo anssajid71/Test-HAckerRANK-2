@@ -1,8 +1,8 @@
-const express = require("express");
+const express = require('express');
 const router = express.Router();
-const controller = require("../controllers/analytics");
+const analyticsController = require('../controllers/analytics');
 
-router.post("/", controller.createEvent);
-router.get("/", controller.getEvents);
+router.post('/', analyticsController.createEvent);
+router.get('/', analyticsController.getEvents);
 
 module.exports = router;

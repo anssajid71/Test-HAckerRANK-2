@@ -1,24 +1,24 @@
 const express = require('express');
-const path = require('path');
-const cookieParser = require('cookie-parser');
-const logger = require('morgan');
-const bodyParser = require('body-parser');
-
-require('./connection');
-
-const indexRouter = require('./routes/index');
-const analyticsRouter = require('./routes/analytics');
-
 const app = express();
-
-app.use(logger('dev'));
 app.use(express.json());
-app.use(express.urlencoded({ extended: false }));
-app.use(cookieParser());
-app.use(express.static(path.join(__dirname, 'public')));
-app.use(bodyParser.json());
 
-app.use('/', indexRouter);
-app.use('/analytics', analyticsRouter);
+const analyticsRoute = require('./routes/analytics');
 
-module.exports = app;
+app.use('/analytics', analyticsRoute);
+
+app.delete('/analytics/:id', (req, res) => {
+  res.status(405).json({ error: 'Method Not Allowed' });
+});
+
+app.put('/analytics/:id', (req, res) => {
+  res.status(405).json({ error: 'Method Not Allowed' });
+});
+
+app.patch('/analytics/:id', (req, res) => {
+  res.status(405).json({ error: 'Method Not Allowed' });
+});
+
+const port = process.env.PORT || 3000;
+app.listen(port, () => {
+  console.log(`Server is listening on port ${port}`);
+});
