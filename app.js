@@ -3,7 +3,7 @@ var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 
-require('./connection');
+var sequilize = require('./connections');
 
 var indexRouter = require('./routes/index');
 var remindersRouter = require('./routes/reminders');
