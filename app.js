@@ -1,8 +1,12 @@
 const express = require('express');
 const app = express();
 app.use(express.json());
+const sequelize = require('./connection');
+
 
 const analyticsRoute = require('./routes/analytics');
+const Analytics = require('./models/analytics');
+
 
 app.use('/analytics', analyticsRoute);
 
@@ -18,7 +22,13 @@ app.patch('/analytics/:id', (req, res) => {
   res.status(405).json({ error: 'Method Not Allowed' });
 });
 
-const port = process.env.PORT || 3000;
-app.listen(port, () => {
-  console.log(`Server is listening on port ${port}`);
-});
+sequelize.sync()
+  .then(() => {
+    const port = process.env.PORT || 3000;
+    app.listen(port, () => {
+      console.log(`Server is listening on port ${port}`);
+    });
+  })
+  .catch((error) => {
+    console.error('Database synchronization error:', error);
+  });

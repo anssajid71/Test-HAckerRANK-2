@@ -1,4 +1,4 @@
-const {Sequelize, DataTypes} = require("sequelize");
+const { Sequelize, DataTypes } = require("sequelize");
 const sequelize = new Sequelize("sqlite::memory:");
 
 const Analytics = sequelize.define("analytics", {
@@ -10,6 +10,7 @@ const Analytics = sequelize.define("analytics", {
     eventType: DataTypes.STRING,
     user: DataTypes.INTEGER,
     date: DataTypes.DATE
-}, {timestamps: false});
+}, { timestamps: false });
 
 module.exports = Analytics;
+
